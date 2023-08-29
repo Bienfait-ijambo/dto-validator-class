@@ -1,0 +1,25 @@
+{
+  "name": "dto-validator-class",
+  "version": "1.0.0",
+  "description": "Allows to validator  properties,method of class using decorators",
+  "main": "index.js",
+  "type": "commonjs",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "test:unit": "npm run compile && node --test dist/__tests__/unit",
+    "test:integration": "npm run compile &&  node --test dist/__tests__/integration",
+    "test:all": "npm run test:unit && npm run test:integration",
+    "test:watch-unit": "node --test --watch  dist/__tests__/unit",
+    "compile": "tsc"
+  },
+  "keywords": [],
+  "author": "Bienfait-Ijambo <ijamboizuba20@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "reflect-metadata": "^0.1.13",
+    "ts-node": "^10.9.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}
