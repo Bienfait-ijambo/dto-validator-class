@@ -3,7 +3,7 @@
 import { ValidationRule } from "../types/dto-validator-class.type";
 
 
-export const rules:ValidationRule={
+export const rulesArray:ValidationRule={
     email:{
         validation:'email',
         message:'is not a valid email',

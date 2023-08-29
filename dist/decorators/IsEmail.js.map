@@ -1,1 +1,1 @@
-{"version":3,"file":"IsEmail.js","sourceRoot":"","sources":["../../src/decorators/IsEmail.ts"],"names":[],"mappings":""}
+{"version":3,"file":"IsEmail.js","sourceRoot":"","sources":["../../src/decorators/IsEmail.ts"],"names":[],"mappings":";;;AAAA,uCAAiD;AACjD,+CAAiD;AAEjD,SAAgB,OAAO,CAAC,MAAU,EAAC,WAAkB;IACjD,IAAA,wBAAiB,EAAC,EAAC,KAAK,EAAC,kBAAU,CAAC,KAAK,EAAC,IAAI,EAAC,WAAW,EAAC,EAAC,MAAM,CAAC,CAAA;AAEvE,CAAC;AAHD,0BAGC"}
