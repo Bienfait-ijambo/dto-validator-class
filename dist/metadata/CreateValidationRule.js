@@ -6,14 +6,15 @@ class CreateValidationRule {
         this.meta = meta;
         this.meta = meta;
     }
-    execute(propertyKey, validationType, target) {
-        const rule = this.createRule(propertyKey, validationType);
+    execute(validationRule, target) {
+        const rule = this.createRule(validationRule);
         this.meta.storeMeta(rule, target);
     }
-    createRule(propertyKey, validationType) {
+    createRule(rule) {
         return {
-            property: propertyKey,
-            validationType: validationType,
+            property: rule.propertyKey,
+            validationType: rule.validationType,
+            operation: rule.operation,
             rule: {
                 message: [],
                 isValid: false
