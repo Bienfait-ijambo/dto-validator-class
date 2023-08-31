@@ -1,7 +1,11 @@
-import { addValidationRule } from "../util/util";
-import { rulesArray } from "../validators/rules";
+import { CreateValidationRule } from "../metadata/CreateValidationRule";
+import { propMeta } from "../metadata/PropMetaData";
+import { ValidationList } from "../validators/validations";
 
-export function IsEmail(target:any,propertyKey:string){
-    addValidationRule({email:rulesArray.email,prop:propertyKey},target)
-
+export function IsEmail(target: any, propertyKey: string) {
+  new CreateValidationRule(propMeta).execute(
+    propertyKey,
+    ValidationList.EMAIL,
+    target
+  );
 }

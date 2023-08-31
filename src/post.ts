@@ -63,6 +63,7 @@ function isValidEmail(email: string): boolean {
   return email.includes('@');
 }
 
+
 class Post {
   @Length(8, 18)
   @IsEmail

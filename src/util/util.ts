@@ -1,5 +1,4 @@
 import "reflect-metadata";
-import { IValidationRule } from "../types/dto-validator-class.type";
 
 export function isNegativeNumber(parm: number | string): boolean {
   const val = parseInt(parm.toString());
