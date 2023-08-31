@@ -11,7 +11,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const IsEmail_1 = require("./decorators/IsEmail");
+const IsNumber_1 = require("./decorators/IsNumber");
 const Required_1 = require("./decorators/Required");
+const PropMetaData_1 = require("./metadata/PropMetaData");
 // function IsInt(target: any, propertyKey: string) {
 //   // return function() {
 //     const validationRules=Reflect.getMetadata('validationRules',target)||[]
@@ -52,16 +54,18 @@ class MyClass {
     constructor(email) {
         this.email = email;
     }
+    validate() {
+        const validationRules = Reflect.getMetadata(PropMetaData_1.VALIDATION_METADATA, this) || [];
+        return validationRules;
+    }
 }
 __decorate([
+    IsNumber_1.IsNumber,
     Required_1.Required,
     IsEmail_1.IsEmail,
     __metadata("design:type", String)
 ], MyClass.prototype, "email", void 0);
 // Instantiate the class
 const myClass = new MyClass('e');
-// const validationRules = Reflect.getMetadata('validationRules', myClass)
-// console.log(validationRules)
-const validationRules = Reflect.getMetadata('validationRules', myClass) || [];
-console.log(validationRules);
+console.log(myClass.validate());
 //# sourceMappingURL=testing.js.map
