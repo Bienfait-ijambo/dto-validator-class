@@ -2,18 +2,18 @@
 
 ### decorators
 
-[] IsBool 
+- [] IsBool 
     params : message :string
 
-[]Length 
+- []Length 
     params : message :string, length :{
         min :number, max :number
     }
-[] Required 
+- [] Required 
     params : message :string
     length :{
         min :number, max :number
     }
 
-[]IsDate 
+- []IsDate 
     params : message :string
