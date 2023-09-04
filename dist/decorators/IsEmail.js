@@ -5,10 +5,11 @@ const CreateValidationRule_1 = require("../metadata/CreateValidationRule");
 const PropMetaData_1 = require("../metadata/PropMetaData");
 const validationList_1 = require("../validators/validationList");
 function IsEmail(target, propertyKey) {
-    new CreateValidationRule_1.CreateValidationRule(PropMetaData_1.propMeta).execute({ propertyKey: propertyKey,
+    new CreateValidationRule_1.CreateValidationRule(PropMetaData_1.propMeta).execute({
+        propertyKey: propertyKey,
         validationType: validationList_1.ValidationList.EMAIL,
         message: [],
-        isValid: false
+        isValid: false,
     }, target);
 }
 exports.IsEmail = IsEmail;
