@@ -1,12 +1,10 @@
 import { CreateValidationRule } from "../metadata/CreateValidationRule"
-import {  PropMetaData } from "../metadata/PropMetaData"
-import { ValidationList } from "../validators/validations"
+import { propMeta } from "../metadata/PropMetaData"
+import { ValidationList } from "../validators/validationList"
 
 export function IsNumber(target:any,propertyKey:string){
  
-    const propMeta=new PropMetaData()
-
-    new CreateValidationRule(propMeta)
-    .execute(propertyKey,ValidationList.NUMBER,target)
+    // new CreateValidationRule(propMeta)
+    // .execute({propertyKey:propertyKey,validationType:ValidationList.NUMBER},target)
 
 }

@@ -1,7 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.isBoolean = exports.isNumber = exports.hasMaxLength = exports.hasMinLength = exports.isNotEmpty = exports.isValidEmail = void 0;
+exports.isBoolean = exports.isNumber = exports.hasMaxLength = exports.hasMinLength = exports.isNotEmpty = exports.isValidEmail = exports.Validator = void 0;
 const util_1 = require("../util/util");
+class Validator {
+}
+exports.Validator = Validator;
 function isValidEmail(email) {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);

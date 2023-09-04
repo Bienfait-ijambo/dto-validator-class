@@ -12,12 +12,16 @@ function Required(param) {
                 propertyKey: propertyKey,
                 validationType: validationList_1.ValidationList.REQUIRED,
                 operation: [{ Length: param.Length }],
+                message: [],
+                isValid: false
             }, target);
         }
         else {
             validationRule.execute({
                 propertyKey: propertyKey,
                 validationType: validationList_1.ValidationList.REQUIRED,
+                message: [],
+                isValid: false
             }, target);
         }
     };

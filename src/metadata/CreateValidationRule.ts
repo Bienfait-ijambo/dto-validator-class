@@ -1,4 +1,7 @@
-import { ValidationList } from "../validators/validations"
+
+import { TypeValidationRule } from "../types/decorator.type";
+import { ValidationList } from "../validators/validationList"
+import { IPropMetaData } from "./interfaces/IPropMetaData";
 
 export interface IRule{
     message: Array<string>;
@@ -10,6 +13,9 @@ export interface ICreateValidationRule{
     rule:IRule
 }
 
+
+
+
 export class CreateValidationRule{
 
 
@@ -17,21 +23,22 @@ export class CreateValidationRule{
       this.meta = meta;
     }
   
-    execute(propertyKey:string,validationType:ValidationList, target: any){
+    execute(validationRule:TypeValidationRule, target: any){
       
-      const rule=this.createRule(propertyKey,validationType)
-      this.meta.storeMeta(rule, target);
+      const rule=this.createRule(validationRule)
+      
+      this.meta.createMetaData(rule, target);
     }
     
 
-    private createRule(propertyKey:string,validationType:ValidationList):ICreateValidationRule{
+    private createRule(rule:TypeValidationRule){
       return {
-        property:propertyKey,
-        validationType:validationType,
-        rule:{
-          message:[],
+        propertyKey:rule.propertyKey,
+        validationType:rule.validationType,
+        operation:rule.operation,
+        message:[],
           isValid:false
-        }
+       
       }
     }
   

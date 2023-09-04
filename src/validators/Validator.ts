@@ -1,29 +1,32 @@
 import { isNegativeNumber } from "../util/util";
 
 
-export function isValidEmail(email:string):boolean{
+
+ export class Validator{
+    
+ protected isValidEmail(email:string):boolean{
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
 }
 
 
-export function isNotEmpty(str:string):boolean{
+ protected isNotEmpty(str:string):boolean{
     return (typeof str !=='undefined' && str.length > 0)? true : false;
 }
 
 
-export function hasMinLength(str:string,min:number):boolean{
+ protected hasMinLength(str:string,min:number):boolean{
 
-    return (isNotEmpty(str) && str.length >=min) ? true:false
+    return (this.isNotEmpty(str) && str.length >=min) ? true:false
    
 }
 
 
-export function hasMaxLength(str:string,max:number):boolean{
-    return (isNotEmpty(str) && str.length <=max) ? true : false;
+  hasMaxLength(str:string,max:number):boolean{
+    return (this.isNotEmpty(str) && str.length <=max) ? true : false;
 }
 
-export function isNumber(param:string|number):boolean{
+ private isNumber(param:string|number):boolean{
 
     if(!isNegativeNumber(param)){
         if(typeof param === 'string'){
@@ -45,7 +48,9 @@ export function isNumber(param:string|number):boolean{
 }
 
 
-export function isBoolean(param:boolean):boolean{
+ private isBoolean(param:boolean):boolean{
     return (typeof param==='boolean') ? true:false
 }
 
+
+}

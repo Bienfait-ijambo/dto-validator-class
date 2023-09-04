@@ -1,10 +1,40 @@
-import { CreateValidationRule } from "../metadata/CreateValidationRule"
-import { PropMetaData } from "../metadata/PropMetaData"
-import { ValidationList } from "../validators/validations"
+import { CreateValidationRule } from "../metadata/CreateValidationRule";
+import { propMeta } from "../metadata/PropMetaData";
+import { TypeLength } from "../types/decorator.type";
+import { ValidationList } from "../validators/validationList";
 
-export function Required(target:any,propertyKey:string){
-    const propMeta=new PropMetaData()
+type RequiredDecorator = {
+  message: string;
+  Length?: TypeLength;
+  Regex?: string;
+};
 
-    new CreateValidationRule(propMeta)
-    .execute(propertyKey,ValidationList.REQUIRED,target)
+export function Required(param?: RequiredDecorator) {
+
+    const validationRule=new CreateValidationRule(propMeta)
+
+  return function (target: any, propertyKey: string) {
+    if (typeof param?.Length !== "undefined") {
+        validationRule.execute({
+          propertyKey: propertyKey,
+          validationType: ValidationList.REQUIRED,
+          operation: [{ Length: param.Length }],
+          message:[],
+          isValid:false
+        },
+        target
+      );
+
+    } else {
+        validationRule.execute(
+        {
+          propertyKey: propertyKey,
+          validationType: ValidationList.REQUIRED,
+          message:[],
+          isValid:false
+        },
+        target
+      );
+    }
+  };
 }

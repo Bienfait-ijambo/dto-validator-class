@@ -7,7 +7,7 @@ import {
   isNotEmpty,
   isNumber,
   isValidEmail,
-} from "../../validators/validators";
+} from "../../validators/Validator";
 
 test("should return true or false", async (t) => {
   await t.test("Test emails", async (t) => {

@@ -4,7 +4,7 @@ export enum ValidationList{
     NUMBER='IsNumber',
     DATE='IsDate',
     REQUIRED='Required', 
-    MAX='Max',
-    MIN='Min',
+    LENGTH='Length',
+ 
     
 }

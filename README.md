@@ -11,9 +11,21 @@
     }
 - [] Required 
     params : message :string
-    length :{
+    operations :Array<length :{
         min :number, max :number
-    }
+    }>
 
 - []IsDate 
     params : message :string
+
+
+### Operations
+[
+    {
+        length :{
+            min:
+            max:
+        }
+    },
+    regex:'//'
+]

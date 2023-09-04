@@ -11,12 +11,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const IsEmail_1 = require("./decorators/IsEmail");
 const Required_1 = require("./decorators/Required");
-const Validate_1 = require("./validators/Validate");
+const ValidateClassProperty_1 = require("./validators/ValidateClassProperty");
 class MyClass {
     validate() {
-        const errors = new Validate_1.Validate(this);
+        const errors = new ValidateClassProperty_1.ValidateClassProperty(this);
         return errors;
-        // console.log(errors)
     }
 }
 __decorate([
@@ -32,5 +31,6 @@ __decorate([
 ], MyClass.prototype, "email", void 0);
 // Instantiate the class
 const myClass = new MyClass();
+myClass.email = "bienfaitmail.com";
 console.log(myClass.validate());
 //# sourceMappingURL=testing.js.map

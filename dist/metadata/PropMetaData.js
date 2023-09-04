@@ -4,15 +4,15 @@ exports.propMeta = exports.PropMetaData = void 0;
 require("reflect-metadata");
 class PropMetaData {
     constructor() {
-        this.VALIDATION_METADATA = 'validationRules';
+        this.VALIDATION_METADATA = "validationRules";
     }
-    storeMeta(rule, target) {
+    createMetaData(rule, target) {
         const validationRules = Reflect.getMetadata(this.VALIDATION_METADATA, target) || [];
         validationRules.push(rule);
         Reflect.defineMetadata(this.VALIDATION_METADATA, validationRules, target);
     }
-    getMetaData(object) {
-        const validationRules = Reflect.getMetadata(this.VALIDATION_METADATA, object) || [];
+    getMetaData(target) {
+        const validationRules = Reflect.getMetadata(this.VALIDATION_METADATA, target) || [];
         return validationRules;
     }
 }

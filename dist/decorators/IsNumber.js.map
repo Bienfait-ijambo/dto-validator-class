@@ -1,1 +1,1 @@
-{"version":3,"file":"IsNumber.js","sourceRoot":"","sources":["../../src/decorators/IsNumber.ts"],"names":[],"mappings":";;;AAAA,2EAAuE;AACvE,2DAAmD;AACnD,iEAA6D;AAE7D,SAAgB,QAAQ,CAAC,MAAU,EAAC,WAAkB;IAElD,IAAI,2CAAoB,CAAC,uBAAQ,CAAC;SACjC,OAAO,CAAC,EAAC,WAAW,EAAC,WAAW,EAAC,cAAc,EAAC,+BAAc,CAAC,MAAM,EAAC,EAAC,MAAM,CAAC,CAAA;AAEnF,CAAC;AALD,4BAKC"}
+{"version":3,"file":"IsNumber.js","sourceRoot":"","sources":["../../src/decorators/IsNumber.ts"],"names":[],"mappings":";;;AAIA,SAAgB,QAAQ,CAAC,MAAU,EAAC,WAAkB;IAElD,qCAAqC;IACrC,kFAAkF;AAEtF,CAAC;AALD,4BAKC"}
