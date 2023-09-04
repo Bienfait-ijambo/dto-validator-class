@@ -8,23 +8,27 @@ class Validator {
         return emailRegex.test(email);
     }
     isNotEmpty(str) {
-        return (typeof str !== 'undefined' && str.length > 0) ? true : false;
+        return typeof str !== "undefined" && str.length > 0 ? true : false;
     }
     hasMinLength(str, min) {
-        return (this.isNotEmpty(str) && str.length >= min) ? true : false;
+        return this.isNotEmpty(str) && str.length >= min ? true : false;
     }
     hasMaxLength(str, max) {
-        return (this.isNotEmpty(str) && str.length <= max) ? true : false;
+        return this.isNotEmpty(str) && str.length <= max ? true : false;
+    }
+    hasValidLength(str, min, max) {
+        const hasValidLength = str.length >= min && str.length <= max;
+        return hasValidLength;
     }
     isNumber(param) {
         if (!(0, util_1.isNegativeNumber)(param)) {
-            if (typeof param === 'string') {
+            if (typeof param === "string") {
                 //convert to int
                 const el = parseInt(param.toString());
-                return (!Number.isNaN(el)) ? true : false;
+                return !Number.isNaN(el) ? true : false;
             }
-            if (typeof param === 'number') {
-                return (!Number.isNaN(param)) ? true : false;
+            if (typeof param === "number") {
+                return !Number.isNaN(param) ? true : false;
             }
         }
         else {
@@ -32,7 +36,7 @@ class Validator {
         }
     }
     isBoolean(param) {
-        return (typeof param === 'boolean') ? true : false;
+        return typeof param === "boolean" ? true : false;
     }
 }
 exports.Validator = Validator;

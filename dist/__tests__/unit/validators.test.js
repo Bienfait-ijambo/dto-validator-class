@@ -15,64 +15,65 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const node_assert_1 = __importDefault(require("node:assert"));
 const node_test_1 = __importDefault(require("node:test"));
 const Validator_1 = require("../../validators/Validator");
+const v = new Validator_1.Validator();
 (0, node_test_1.default)("should return true or false", (t) => __awaiter(void 0, void 0, void 0, function* () {
     yield t.test("Test emails", (t) => __awaiter(void 0, void 0, void 0, function* () {
         yield t.test("Should return true", (t) => __awaiter(void 0, void 0, void 0, function* () {
-            const isValid = (0, Validator_1.isValidEmail)("bienfait@gmail.com");
+            const isValid = v.isValidEmail("bienfait@gmail.com");
             node_assert_1.default.strictEqual(isValid, true);
         }));
         yield t.test("Should return false", (t) => __awaiter(void 0, void 0, void 0, function* () {
-            const isValid = (0, Validator_1.isValidEmail)("bienfaitgmail.com");
+            const isValid = v.isValidEmail("bienfaitgmail.com");
             node_assert_1.default.strictEqual(isValid, false);
         }));
     }));
     yield t.test("Test isNotEmpty func", (t) => __awaiter(void 0, void 0, void 0, function* () {
         yield t.test("Should return true", (t) => __awaiter(void 0, void 0, void 0, function* () {
-            const isValid = (0, Validator_1.isNotEmpty)("bienfai");
+            const isValid = v.isNotEmpty("bienfai");
             node_assert_1.default.strictEqual(isValid, true);
         }));
         yield t.test("Should return false", (t) => __awaiter(void 0, void 0, void 0, function* () {
-            const isValid = (0, Validator_1.isNotEmpty)("");
+            const isValid = v.isNotEmpty("");
             node_assert_1.default.strictEqual(isValid, false);
         }));
     }));
     yield t.test("Test hasMaxLength func", (t) => __awaiter(void 0, void 0, void 0, function* () {
         yield t.test("Should return true", (t) => __awaiter(void 0, void 0, void 0, function* () {
-            const isValid = (0, Validator_1.hasMaxLength)("bien", 4);
+            const isValid = v.hasMaxLength("bien", 4);
             node_assert_1.default.strictEqual(isValid, true);
         }));
         yield t.test("Should return false", (t) => __awaiter(void 0, void 0, void 0, function* () {
-            const isValid = (0, Validator_1.hasMaxLength)("en", 4);
+            const isValid = v.hasMaxLength("en", 4);
             node_assert_1.default.strictEqual(isValid, true);
         }));
     }));
     yield t.test("Test hasMinLength func", (t) => __awaiter(void 0, void 0, void 0, function* () {
         yield t.test("Should return true", (t) => __awaiter(void 0, void 0, void 0, function* () {
-            const isValid = (0, Validator_1.hasMinLength)("bien", 4);
+            const isValid = v.hasMinLength("bien", 4);
             node_assert_1.default.strictEqual(isValid, true);
         }));
         yield t.test("Should return false", (t) => __awaiter(void 0, void 0, void 0, function* () {
-            const isValid = (0, Validator_1.hasMinLength)("en", 4);
+            const isValid = v.hasMinLength("en", 4);
             node_assert_1.default.strictEqual(isValid, false);
         }));
     }));
     yield t.test("Test isNumber func", (t) => __awaiter(void 0, void 0, void 0, function* () {
         yield t.test("Should return true", (t) => __awaiter(void 0, void 0, void 0, function* () {
-            const isValid = (0, Validator_1.isNumber)(2);
+            const isValid = v.isNumber(2);
             node_assert_1.default.strictEqual(isValid, true);
         }));
         yield t.test("Should return false", (t) => __awaiter(void 0, void 0, void 0, function* () {
-            const isValid = (0, Validator_1.isNumber)("en");
+            const isValid = v.isNumber("en");
             node_assert_1.default.strictEqual(isValid, false);
         }));
     }));
     yield t.test("Test isBoolean func", (t) => __awaiter(void 0, void 0, void 0, function* () {
         yield t.test("Should return true", (t) => __awaiter(void 0, void 0, void 0, function* () {
-            const isValid = (0, Validator_1.isBoolean)(true);
+            const isValid = v.isBoolean(true);
             node_assert_1.default.strictEqual(isValid, true);
         }));
         yield t.test("Should return true", (t) => __awaiter(void 0, void 0, void 0, function* () {
-            const isValid = (0, Validator_1.isBoolean)(false);
+            const isValid = v.isBoolean(false);
             node_assert_1.default.strictEqual(isValid, true);
         }));
     }));

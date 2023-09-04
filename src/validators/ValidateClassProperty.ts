@@ -12,7 +12,7 @@ export class ValidateClassProperty extends Validator{
         super()
         this.target=target
         
-      this.processEmailRule()
+      this.validateRules()
     }
 
     private getMetaData():TypeValidationRule[] {
@@ -22,79 +22,81 @@ export class ValidateClassProperty extends Validator{
         return metadata
     }
 
+   
 
-   private processEmailRule(){
+
+   private validateRules(){
         const rules=this.getMetaData()
       
      for(let index=0;index<rules.length;index++){
         const propValue=this.target[rules[index].propertyKey]
 
+        //email
         if(rules[index].validationType===ValidationList.EMAIL){
 
             if(!this.isValidEmail(propValue)){
                 rules[index].message.push('Email is not valid !')
+              
+            }
+        }
+
+        //required
+        if(rules[index].validationType===ValidationList.REQUIRED){
+            if(!this.isNotEmpty(propValue)){
+                rules[index].message.push('This property is required !')
+               
+            }
+        }
+
+        //boolen
+        if(rules[index].validationType===ValidationList.BOOL){
+            if(!this.isBoolean(propValue)){
+                rules[index].message.push('This property must be a boolean')
+               
+            }
+        }
+
+        //is number
+
+        if(rules[index].validationType===ValidationList.NUMBER){
+            if(!this.isBoolean(propValue)){
+                rules[index].message.push('This property must be a number')
+               
             }
         }
 
 
-        // const operation:TypeValidationOperation[]=rules[index].operation
+
+
+        //operations
+        const operation:TypeValidationOperation[]=rules[index].operation
         
-        // if(typeof operation!=='undefined'){
-        //     const minLength=rules[index].operation[0].Length.min
-        //     const maxLength=rules[index].operation[0].Length.max
+        if(typeof operation!=='undefined'){
+            const minLength=rules[index].operation[0].Length.min
+            const maxLength=rules[index].operation[0].Length.max
+            if(!!operation.length){
 
-        //     if(!!operation.length){
-        //         if(!this.hasMinLength(propValue,minLength)){
-        //              rules[index].message.push(`Minimum length is ${minLength}`)
-        //         }
+             
 
-        //         if(!this.hasMaxLength(propValue,maxLength)){
-        //             rules[index].message.push(`Minimum length is ${maxLength}`)
+                if(!this.hasValidLength(propValue,minLength,maxLength)){
+                rules[index].message.push(`This property must be between ${minLength} and ${maxLength} characters`)
 
-        //        }
-        //     }
-        // } 
+                }
+
+             
+               
+            }
+        } 
        
      }
+
+
+
+     console.log('rules', rules)
 
     
     }
 
-    processRequiredRule(){
-        const rules=this.getMetaData()
-      
-        for(let index=0;index<rules.length;index++){
-           const propValue=this.target[rules[index].propertyKey]
-   
-           if(rules[index].validationType===ValidationList.EMAIL){
-   
-               if(!this.isNotEmpty(propValue)){
-                   rules[index].message.push('This property is required')
-               }
-           }
-   
-   
-           const operation:TypeValidationOperation[]=rules[index].operation
-           
-           if(typeof operation!=='undefined'){
-               const minLength=rules[index].operation[0].Length.min
-               const maxLength=rules[index].operation[0].Length.max
-   
-               if(!!operation.length){
-                   if(!this.hasMinLength(propValue,minLength)){
-                        rules[index].message.push(`Minimum length is ${minLength}`)
-                   }
-   
-                   if(!this.hasMaxLength(propValue,maxLength)){
-                       rules[index].message.push(`Minimum length is ${maxLength}`)
-   
-                  }
-               }
-           } 
-          
-        }
-   
-    }
 
     
 }

@@ -31,6 +31,6 @@ __decorate([
 ], MyClass.prototype, "email", void 0);
 // Instantiate the class
 const myClass = new MyClass();
-myClass.email = "bienfaitmail.com";
+myClass.email = "";
 console.log(myClass.validate());
 //# sourceMappingURL=testing.js.map

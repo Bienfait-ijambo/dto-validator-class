@@ -23,7 +23,7 @@ class MyClass {
 
 // Instantiate the class
 const myClass = new MyClass();
-myClass.email="bienfaitmail.com";
+myClass.email="";
 
 console.log(myClass.validate())
 

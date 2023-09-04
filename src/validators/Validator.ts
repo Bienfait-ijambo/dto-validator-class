@@ -1,56 +1,49 @@
 import { isNegativeNumber } from "../util/util";
 
-
-
- export class Validator{
-    
- protected isValidEmail(email:string):boolean{
+export class Validator {
+  public isValidEmail(email: string): boolean {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
-}
+  }
 
+  public isNotEmpty(str: string): boolean {
+    return typeof str !== "undefined" && str.length > 0 ? true : false;
+  }
 
- protected isNotEmpty(str:string):boolean{
-    return (typeof str !=='undefined' && str.length > 0)? true : false;
-}
+  public;
 
+  hasMinLength(str: string, min: number): boolean {
+    return this.isNotEmpty(str) && str.length >= min ? true : false;
+  }
 
- protected hasMinLength(str:string,min:number):boolean{
+  hasMaxLength(str: string, max: number): boolean {
+    return this.isNotEmpty(str) && str.length <= max ? true : false;
+  }
 
-    return (this.isNotEmpty(str) && str.length >=min) ? true:false
-   
-}
+  hasValidLength(str:string,min:number,max:number): boolean {
+    const hasValidLength=str.length>=min && str.length<=max
+    return hasValidLength
+                
+  }
 
+  isNumber(param: string | number): boolean {
+    if (!isNegativeNumber(param)) {
+      if (typeof param === "string") {
+        //convert to int
+        const el = parseInt(param.toString());
 
-  hasMaxLength(str:string,max:number):boolean{
-    return (this.isNotEmpty(str) && str.length <=max) ? true : false;
-}
+        return !Number.isNaN(el) ? true : false;
+      }
 
- private isNumber(param:string|number):boolean{
-
-    if(!isNegativeNumber(param)){
-        if(typeof param === 'string'){
-            //convert to int
-            const el=parseInt(param.toString())
-    
-            return (!Number.isNaN(el)) ? true:false
-        }
-    
-        if(typeof param === 'number'){
-            return (!Number.isNaN(param)) ? true:false
-            
-        }
-    }else{
-        return false
+      if (typeof param === "number") {
+        return !Number.isNaN(param) ? true : false;
+      }
+    } else {
+      return false;
     }
+  }
 
-   
-}
-
-
- private isBoolean(param:boolean):boolean{
-    return (typeof param==='boolean') ? true:false
-}
-
-
+  public isBoolean(param: boolean): boolean {
+    return typeof param === "boolean" ? true : false;
+  }
 }
