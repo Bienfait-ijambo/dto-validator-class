@@ -80,3 +80,6 @@ const post = new Post('bien-----------------------------------------------------
 const validationErrors = validate(post);
 
 console.log(validationErrors);
+
+
+

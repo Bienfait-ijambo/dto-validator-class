@@ -38,6 +38,13 @@ class Validator {
     isBoolean(param) {
         return typeof param === "boolean" ? true : false;
     }
+    isValidDate(dateString) {
+        const regex = /^\d{4}-\d{2}-\d{2}$/;
+        const isValidFormat = regex.test(dateString);
+        return isValidFormat ? true : false;
+        //   const date = new Date(dateString);
+        //   return !isNaN(date.getTime());
+    }
 }
 exports.Validator = Validator;
 //# sourceMappingURL=Validator.js.map

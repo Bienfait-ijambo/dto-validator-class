@@ -1,9 +1,12 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ValidateClassProperty = void 0;
-const PropMetaData_1 = require("../metadata/PropMetaData");
+const CreateValidationMetaData_1 = require("../metadata/CreateValidationMetaData");
 const Validator_1 = require("./Validator");
 const validationList_1 = require("./validationList");
+/**
+ * This class allows to validate a class that holds  metadata
+ */
 class ValidateClassProperty extends Validator_1.Validator {
     constructor(target) {
         super();
@@ -11,7 +14,7 @@ class ValidateClassProperty extends Validator_1.Validator {
         this.validateRules();
     }
     getMetaData() {
-        const propMetaData = new PropMetaData_1.PropMetaData();
+        const propMetaData = new CreateValidationMetaData_1.CreateValidationMetaData();
         const metadata = propMetaData.getMetaData(this.target);
         return metadata;
     }
@@ -41,6 +44,12 @@ class ValidateClassProperty extends Validator_1.Validator {
             if (rules[index].validationType === validationList_1.ValidationList.NUMBER) {
                 if (!this.isBoolean(propValue)) {
                     rules[index].message.push('This property must be a number');
+                }
+            }
+            //date
+            if (rules[index].validationType === validationList_1.ValidationList.DATE) {
+                if (!this.isValidDate(propValue)) {
+                    rules[index].message.push('Date must be a valid date');
                 }
             }
             //operations

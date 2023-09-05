@@ -1,1 +1,1 @@
-{"version":3,"file":"IsBool.js","sourceRoot":"","sources":["../../src/decorators/IsBool.ts"],"names":[],"mappings":""}
+{"version":3,"file":"IsBool.js","sourceRoot":"","sources":["../../src/decorators/IsBool.ts"],"names":[],"mappings":";;;AAAA,2EAAwE;AACxE,mFAAgE;AAChE,iEAA8D;AAI9D,SAAgB,MAAM,CAAC,MAAW,EAAE,WAAmB;IACnD,IAAI,2CAAoB,CAAC,mCAAQ,CAAC,CAAC,OAAO,CACxC;QACE,WAAW,EAAE,WAAW;QACxB,cAAc,EAAE,+BAAc,CAAC,IAAI;QACnC,OAAO,EAAE,EAAE;QACX,OAAO,EAAE,KAAK;KACf,EACD,MAAM,CACP,CAAC;AACJ,CAAC;AAVH,wBAUG"}

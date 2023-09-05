@@ -11,19 +11,18 @@ class MyClass {
     },
   })
   @IsEmail
-  email: string
+  email: string;
 
   validate() {
-   
-    const errors = new ValidateClassProperty(this);
-    return errors;
-  
+    return new ValidateClassProperty(this);
   }
 }
 
 // Instantiate the class
 const myClass = new MyClass();
-myClass.email="";
+myClass.email = "";
 
-console.log(myClass.validate())
+// const [errors,input]=myClass.validate()
+// input.getValidatedInputs()
 
+console.log(myClass.validate());

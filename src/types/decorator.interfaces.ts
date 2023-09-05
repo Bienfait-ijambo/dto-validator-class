@@ -1,8 +1,25 @@
-interface ILength {
+import { ValidationList } from "../validators/validationList";
+import { TypeValidationOperation } from "./decorator.type";
+
+export interface ILength {
     min: number;
     max: number;
   }
   
-  interface IMessage {
+  export interface IMessage {
     message?: string;
   }
+  //type decorators
+
+
+  export interface SimpleDecorator<T extends ValidationList>{
+    propertyKey: string,
+    validationType: T,
+    isValid: boolean,
+    message:string[]
+  }
+  export interface DecoratorWithOperation<T extends ValidationList>  extends SimpleDecorator<T> {
+      operation:Array<TypeValidationOperation>
+  }
+
+ 

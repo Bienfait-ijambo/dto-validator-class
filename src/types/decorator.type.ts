@@ -1,4 +1,5 @@
 import { ValidationList } from "../validators/validationList";
+import { DecoratorWithOperation, ILength, IMessage, SimpleDecorator } from "./decorator.interfaces";
 
 
 
@@ -14,10 +15,23 @@ export type TypeValidationOperation={
 }
 
 
-export type TypeValidationRule={
+export type TypeValidationRule<T extends ValidationList>={
     propertyKey:string,
-    validationType:ValidationList,
+    validationType:T,
     operation?:Array<TypeValidationOperation>
     message:string[]
     isValid:boolean
   }
+
+
+  export type DecoratorParamProperty<T extends string>=T extends ValidationList.EMAIL 
+  ? SimpleDecorator<T>
+  : T extends ValidationList.REQUIRED
+  ? DecoratorWithOperation<T>|SimpleDecorator<T>
+  : T extends ValidationList.NUMBER
+  ? SimpleDecorator<T>
+  : T extends ValidationList.BOOL 
+  ? SimpleDecorator<T>
+  : T extends ValidationList.DATE
+  ? SimpleDecorator<T>
+  :never

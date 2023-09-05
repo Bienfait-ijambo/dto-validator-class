@@ -1,5 +1,5 @@
 import { CreateValidationRule } from "../metadata/CreateValidationRule";
-import { propMeta } from "../metadata/PropMetaData";
+import { propMeta } from "../metadata/CreateValidationMetaData";
 import { TypeLength } from "../types/decorator.type";
 import { ValidationList } from "../validators/validationList";
 
@@ -15,7 +15,7 @@ export function Required(param?: RequiredDecorator) {
 
   return function (target: any, propertyKey: string) {
     if (typeof param?.Length !== "undefined") {
-        validationRule.execute({
+        validationRule.execute<ValidationList.REQUIRED>({
           propertyKey: propertyKey,
           validationType: ValidationList.REQUIRED,
           operation: [{ Length: param.Length }],
@@ -26,7 +26,7 @@ export function Required(param?: RequiredDecorator) {
       );
 
     } else {
-        validationRule.execute(
+        validationRule.execute<ValidationList.REQUIRED>(
         {
           propertyKey: propertyKey,
           validationType: ValidationList.REQUIRED,

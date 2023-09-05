@@ -1,10 +1,13 @@
 import "reflect-metadata";
 import { IPropMetaData } from "./interfaces/IPropMetaData";
+import { ValidationList } from "../validators/validationList";
+import { TypeValidationRule } from "../types/decorator.type";
 
-export class PropMetaData implements IPropMetaData {
+export class CreateValidationMetaData implements IPropMetaData {
+  
   protected VALIDATION_METADATA: string = "validationRules";
 
-  createMetaData(rule: Record<string, any>, target: any) {
+  createMetaData<T extends ValidationList>(rule:TypeValidationRule<T>, target: any) {
     const validationRules =
       Reflect.getMetadata(this.VALIDATION_METADATA, target) || [];
     validationRules.push(rule);
@@ -18,4 +21,4 @@ export class PropMetaData implements IPropMetaData {
   }
 }
 
-export const propMeta = new PropMetaData();
+export const propMeta = new CreateValidationMetaData();

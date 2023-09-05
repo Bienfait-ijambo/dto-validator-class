@@ -14,8 +14,7 @@ const Required_1 = require("./decorators/Required");
 const ValidateClassProperty_1 = require("./validators/ValidateClassProperty");
 class MyClass {
     validate() {
-        const errors = new ValidateClassProperty_1.ValidateClassProperty(this);
-        return errors;
+        return new ValidateClassProperty_1.ValidateClassProperty(this);
     }
 }
 __decorate([
@@ -32,5 +31,7 @@ __decorate([
 // Instantiate the class
 const myClass = new MyClass();
 myClass.email = "";
+// const [errors,input]=myClass.validate()
+// input.getValidatedInputs()
 console.log(myClass.validate());
 //# sourceMappingURL=testing.js.map

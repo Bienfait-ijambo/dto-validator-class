@@ -1,17 +1,7 @@
 
-import { TypeValidationRule } from "../types/decorator.type";
+import { DecoratorParamProperty, TypeValidationRule } from "../types/decorator.type";
 import { ValidationList } from "../validators/validationList"
 import { IPropMetaData } from "./interfaces/IPropMetaData";
-
-export interface IRule{
-    message: Array<string>;
-    isValid: boolean;
-}
-export interface ICreateValidationRule{
-    property:string
-    validationType:ValidationList,
-    rule:IRule
-}
 
 
 
@@ -23,21 +13,20 @@ export class CreateValidationRule{
       this.meta = meta;
     }
   
-    execute(validationRule:TypeValidationRule, target: any){
+    execute<T extends string>(validationRule:DecoratorParamProperty<T>, target: any){
       
       const rule=this.createRule(validationRule)
-      
       this.meta.createMetaData(rule, target);
     }
     
 
-    private createRule(rule:TypeValidationRule){
+    private createRule<T extends ValidationList>(rule:TypeValidationRule<T>):TypeValidationRule<T> {
       return {
         propertyKey:rule.propertyKey,
         validationType:rule.validationType,
         operation:rule.operation,
         message:[],
-          isValid:false
+        isValid:false
        
       }
     }
