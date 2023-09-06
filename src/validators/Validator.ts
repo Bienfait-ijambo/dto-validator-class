@@ -10,7 +10,6 @@ export class Validator {
     return typeof str !== "undefined" && str.length > 0 ? true : false;
   }
 
-  public;
 
   hasMinLength(str: string, min: number): boolean {
     return this.isNotEmpty(str) && str.length >= min ? true : false;
@@ -26,21 +25,8 @@ export class Validator {
                 
   }
 
-  isNumber(param: string | number): boolean {
-    if (!isNegativeNumber(param)) {
-      if (typeof param === "string") {
-        //convert to int
-        const el = parseInt(param.toString());
-
-        return !Number.isNaN(el) ? true : false;
-      }
-
-      if (typeof param === "number") {
-        return !Number.isNaN(param) ? true : false;
-      }
-    } else {
-      return false;
-    }
+  isNumber(value: string | number): boolean {
+    return typeof value === 'number' && !isNaN(value) ? true : false;
   }
 
   public isBoolean(param: boolean): boolean {

@@ -25,7 +25,7 @@ export class CreateValidationRule{
         propertyKey:rule.propertyKey,
         validationType:rule.validationType,
         operation:rule.operation,
-        message:[],
+        message:rule.message,
         isValid:false
        
       }

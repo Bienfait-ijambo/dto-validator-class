@@ -1,7 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Validator = void 0;
-const util_1 = require("../util/util");
 class Validator {
     isValidEmail(email) {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -20,20 +19,8 @@ class Validator {
         const hasValidLength = str.length >= min && str.length <= max;
         return hasValidLength;
     }
-    isNumber(param) {
-        if (!(0, util_1.isNegativeNumber)(param)) {
-            if (typeof param === "string") {
-                //convert to int
-                const el = parseInt(param.toString());
-                return !Number.isNaN(el) ? true : false;
-            }
-            if (typeof param === "number") {
-                return !Number.isNaN(param) ? true : false;
-            }
-        }
-        else {
-            return false;
-        }
+    isNumber(value) {
+        return typeof value === 'number' && !isNaN(value) ? true : false;
     }
     isBoolean(param) {
         return typeof param === "boolean" ? true : false;

@@ -12,7 +12,7 @@ function Required(param) {
                 propertyKey: propertyKey,
                 validationType: validationList_1.ValidationList.REQUIRED,
                 operation: [{ Length: param.Length }],
-                message: [],
+                message: !(param === null || param === void 0 ? void 0 : param.message) ? [] : [param.message],
                 isValid: false
             }, target);
         }
@@ -20,7 +20,7 @@ function Required(param) {
             validationRule.execute({
                 propertyKey: propertyKey,
                 validationType: validationList_1.ValidationList.REQUIRED,
-                message: [],
+                message: !(param === null || param === void 0 ? void 0 : param.message) ? [] : [param.message],
                 isValid: false
             }, target);
         }

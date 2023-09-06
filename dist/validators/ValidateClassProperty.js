@@ -11,60 +11,122 @@ class ValidateClassProperty extends Validator_1.Validator {
     constructor(target) {
         super();
         this.target = target;
-        this.validateRules();
+    }
+    validate() {
+        const rules = this.getMetaData();
+        return this.validateRules(rules);
     }
     getMetaData() {
         const propMetaData = new CreateValidationMetaData_1.CreateValidationMetaData();
         const metadata = propMetaData.getMetaData(this.target);
         return metadata;
     }
-    validateRules() {
-        const rules = this.getMetaData();
+    validateRules(rules) {
         for (let index = 0; index < rules.length; index++) {
             const propValue = this.target[rules[index].propertyKey];
             //email
             if (rules[index].validationType === validationList_1.ValidationList.EMAIL) {
                 if (!this.isValidEmail(propValue)) {
-                    rules[index].message.push('Email is not valid !');
+                    if (rules[index].message.length === 0) {
+                        rules[index].message.push("Email is not valid !");
+                    }
+                    rules[index].isValid = false;
+                }
+                else {
+                    rules[index].isValid = true;
+                    rules[index].message = [];
                 }
             }
             //required
             if (rules[index].validationType === validationList_1.ValidationList.REQUIRED) {
                 if (!this.isNotEmpty(propValue)) {
-                    rules[index].message.push('This property is required !');
+                    if (rules[index].message.length === 0) {
+                        rules[index].message.push("This property is required !");
+                    }
+                    rules[index].isValid = false;
+                }
+                else {
+                    rules[index].isValid = true;
+                    rules[index].message = [];
                 }
             }
             //boolen
             if (rules[index].validationType === validationList_1.ValidationList.BOOL) {
                 if (!this.isBoolean(propValue)) {
-                    rules[index].message.push('This property must be a boolean');
+                    if (rules[index].message.length === 0) {
+                        rules[index].message.push("This property must be a boolean");
+                    }
+                    rules[index].isValid = false;
+                }
+                else {
+                    rules[index].isValid = true;
+                    rules[index].message = [];
                 }
             }
             //is number
             if (rules[index].validationType === validationList_1.ValidationList.NUMBER) {
-                if (!this.isBoolean(propValue)) {
-                    rules[index].message.push('This property must be a number');
+                if (!this.isNumber(propValue)) {
+                    if (rules[index].message.length === 0) {
+                        rules[index].message.push("This property must be a number");
+                    }
+                    rules[index].isValid = false;
+                }
+                else {
+                    rules[index].isValid = true;
+                    rules[index].message = [];
                 }
             }
             //date
             if (rules[index].validationType === validationList_1.ValidationList.DATE) {
                 if (!this.isValidDate(propValue)) {
-                    rules[index].message.push('Date must be a valid date');
+                    if (rules[index].message.length === 0) {
+                        rules[index].message.push("Date must be a valid date");
+                    }
+                    rules[index].isValid = false;
+                }
+                else {
+                    rules[index].isValid = true;
+                    rules[index].message = [];
                 }
             }
             //operations
             const operation = rules[index].operation;
-            if (typeof operation !== 'undefined') {
+            if (typeof operation !== "undefined") {
                 const minLength = rules[index].operation[0].Length.min;
                 const maxLength = rules[index].operation[0].Length.max;
                 if (!!operation.length) {
                     if (!this.hasValidLength(propValue, minLength, maxLength)) {
-                        rules[index].message.push(`This property must be between ${minLength} and ${maxLength} characters`);
+                        if (rules[index].message.length === 0) {
+                            rules[index].message.push(`This property must be between ${minLength} and ${maxLength} characters`);
+                        }
+                        rules[index].isValid = false;
+                    }
+                    else {
+                        rules[index].isValid = true;
+                        rules[index].message = [];
                     }
                 }
             }
         }
-        console.log('rules', rules);
+        return rules;
+    }
+    /**
+     * this functions checks weither all input are valid
+     */
+    verify(rules) {
+        let errors = 0;
+        const inputs = {};
+        for (const prop of rules) {
+            if (!prop.isValid) {
+                errors++;
+                throw new Error(prop.message[0]);
+            }
+            else {
+                inputs[prop.propertyKey] = this.target[prop.propertyKey];
+            }
+        }
+        if (errors === 0)
+            return inputs;
     }
 }
 exports.ValidateClassProperty = ValidateClassProperty;

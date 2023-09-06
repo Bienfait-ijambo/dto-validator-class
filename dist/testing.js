@@ -8,30 +8,69 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-const IsEmail_1 = require("./decorators/IsEmail");
-const Required_1 = require("./decorators/Required");
+const decorators_1 = require("./decorators");
 const ValidateClassProperty_1 = require("./validators/ValidateClassProperty");
 class MyClass {
     validate() {
-        return new ValidateClassProperty_1.ValidateClassProperty(this);
+        const validator = new ValidateClassProperty_1.ValidateClassProperty(this);
+        const input = validator.verify(validator.validate());
+        return Promise.resolve(input).catch(error => error);
     }
 }
 __decorate([
-    (0, Required_1.Required)({
-        message: "L'adresse mail est requis",
+    (0, decorators_1.Required)({
+        message: "Entre 2 et 20",
         Length: {
             min: 2,
-            max: 10,
+            max: 20,
         },
     }),
-    IsEmail_1.IsEmail,
+    (0, decorators_1.IsEmail)({
+        message: "Adresse mail invalide"
+    }),
     __metadata("design:type", String)
 ], MyClass.prototype, "email", void 0);
+__decorate([
+    (0, decorators_1.IsNumber)({
+        message: "Entre un nombre"
+    }),
+    __metadata("design:type", Number)
+], MyClass.prototype, "age", void 0);
+__decorate([
+    (0, decorators_1.Required)({
+        Length: {
+            min: 6,
+            max: 8,
+        },
+    }),
+    __metadata("design:type", String)
+], MyClass.prototype, "password", void 0);
 // Instantiate the class
 const myClass = new MyClass();
-myClass.email = "";
-// const [errors,input]=myClass.validate()
-// input.getValidatedInputs()
-console.log(myClass.validate());
+myClass.email = "bi@gmail.com";
+myClass.age = 23;
+myClass.password = '23';
+function insert() {
+    return __awaiter(this, void 0, void 0, function* () {
+        try {
+            const input = yield myClass.validate();
+            console.log('input', input);
+        }
+        catch (error) {
+            console.log(error, error.message);
+        }
+    });
+}
+// THERES A BIG BUG CHECK FOR UNDEFINED PROPERTIES
+insert();
 //# sourceMappingURL=testing.js.map

@@ -1,28 +1,58 @@
-import { IsEmail } from "./decorators/IsEmail";
-import { Required } from "./decorators/Required";
+
+import { Required,IsEmail,IsNumber } from "./decorators";
 import { ValidateClassProperty } from "./validators/ValidateClassProperty";
 
 class MyClass {
+
   @Required({
-    message: "L'adresse mail est requis",
+    message: "Entre 2 et 20",
     Length: {
       min: 2,
-      max: 10,
+      max: 20,
     },
   })
-  @IsEmail
+  @IsEmail({
+    message:"Adresse mail invalide"
+  })
   email: string;
 
+  @IsNumber({
+    message:"Entre un nombre"
+  })
+  age: number;
+
+  @Required({
+    Length: {
+      min: 6,
+      max: 8,
+    },
+  })
+  password: string;
+
+  
   validate() {
-    return new ValidateClassProperty(this);
+    const validator= new ValidateClassProperty(this);
+    const input=validator.verify(validator.validate())
+    return Promise.resolve(input).catch(error=>error)
+  
   }
 }
 
 // Instantiate the class
 const myClass = new MyClass();
-myClass.email = "";
+myClass.email = "bi@gmail.com";
+myClass.age=23
+myClass.password='23'
 
-// const [errors,input]=myClass.validate()
-// input.getValidatedInputs()
+async function insert(){
+  try {
+    const input=await myClass.validate();
+    console.log('input',input)
+  } catch (error) {
+    console.log(error,error.message)
+  }
+}
 
-console.log(myClass.validate());
+// THERES A BIG BUG CHECK FOR UNDEFINED PROPERTIES
+insert()
+
