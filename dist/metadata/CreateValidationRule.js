@@ -6,6 +6,12 @@ class CreateValidationRule {
         this.meta = meta;
         this.meta = meta;
     }
+    /**
+     *
+     * @param validationRule  ${object}
+     * @param target
+     * This function allows to add validation rules to a property of the target class
+     */
     execute(validationRule, target) {
         const rule = this.createRule(validationRule);
         this.meta.createMetaData(rule, target);

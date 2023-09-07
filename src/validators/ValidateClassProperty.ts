@@ -19,19 +19,52 @@ export class ValidateClassProperty extends Validator {
 
   public validate() {
     const rules = this.getMetaData();
-
     return this.validateRules(rules);
   }
 
+  /**
+   * 
+   * @returns an array of metadata added to  class properties 
+   */
   private getMetaData<T extends ValidationList>(): TypeValidationRule<T>[] {
     const propMetaData = new CreateValidationMetaData();
     const metadata = propMetaData.getMetaData(this.target);
     return metadata;
   }
 
+  /**
+   * 
+   * @param rules 
+   * @returns rules array
+   * Loop through an array of metadata added to property of a class, then checks if
+   * the property is valid or not. 
+   * If not, push an error message into message array else empty array and set is valid property to false
+   * 
+   * Example of rules array
+    [
+      {
+          propertyKey: 'email',
+          validationType: 'IsEmail',
+          operation: undefined,
+          message: [ 'Adresse mail invalide' ],
+          isValid: false
+        },
+        {
+          propertyKey: 'email',
+          validationType: 'Required',
+          operation: [ [Object] ],
+          message: [],
+          isValid: true
+        }
+   * ]
+   * 
+   * 
+   */
   private validateRules<T extends ValidationList>(
     rules: TypeValidationRule<T>[]
   ) {
+
+    
     for (let index = 0; index < rules.length; index++) {
       const propValue = this.target[rules[index].propertyKey];
       const property=rules[index].propertyKey
@@ -131,10 +164,13 @@ export class ValidateClassProperty extends Validator {
   }
 
   /**
-   * this functions checks weither all input are valid
+   * 
+   * @param rules 
+   * @returns a valited input
+   * @throws an error if the property is not valid
    */
   verify(rules: TypeValidationRule<ValidationList>[]) {
- 
+   
     let errors = 0;
     const inputs = {};
     for (const prop of rules) {

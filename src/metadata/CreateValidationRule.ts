@@ -12,7 +12,13 @@ export class CreateValidationRule{
     constructor(private meta:IPropMetaData){
       this.meta = meta;
     }
-  
+    
+    /**
+     * 
+     * @param validationRule  ${object}
+     * @param target 
+     * This function allows to add validation rules to a property of the target class 
+     */
     execute<T extends string>(validationRule:DecoratorParamProperty<T>, target: any){
       
       const rule=this.createRule(validationRule)
