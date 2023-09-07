@@ -6,8 +6,11 @@ export class Validator {
     return emailRegex.test(email);
   }
 
-  public isNotEmpty(str: string): boolean {
-    return typeof str !== "undefined" && str.length > 0 ? true : false;
+  public isNotEmpty(value: string): boolean {
+
+    if(typeof value==='undefined') return false;
+
+    return  value.length > 0 ? true : false;
   }
 
 
@@ -19,8 +22,11 @@ export class Validator {
     return this.isNotEmpty(str) && str.length <= max ? true : false;
   }
 
-  hasValidLength(str:string,min:number,max:number): boolean {
-    const hasValidLength=str.length>=min && str.length<=max
+  hasValidLength(value:string,min:number,max:number): boolean {
+   
+    if(typeof value==='undefined') return false;
+
+    const hasValidLength=value.length>=min && value.length<=max
     return hasValidLength
                 
   }

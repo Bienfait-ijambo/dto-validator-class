@@ -29,6 +29,12 @@ class MyClass {
   })
   password: string;
 
+
+  constructor(email:string,password:string,age:number) {
+    this.email=email
+    this.password=password
+    this.age=age
+  }
   
   validate() {
     const validator= new ValidateClassProperty(this);
@@ -39,20 +45,20 @@ class MyClass {
 }
 
 // Instantiate the class
-const myClass = new MyClass();
-myClass.email = "bi@gmail.com";
-myClass.age=23
-myClass.password='23'
+const myClass = new MyClass("bienfait","password",12);
+// myClass.email = "bi@gmail.com";
+// myClass.age=23
+// myClass.password="password"
 
 async function insert(){
   try {
     const input=await myClass.validate();
     console.log('input',input)
   } catch (error) {
-    console.log(error,error.message)
+    console.log('error : ',error.message)
   }
 }
 
-// THERES A BIG BUG CHECK FOR UNDEFINED PROPERTIES
+
 insert()
 

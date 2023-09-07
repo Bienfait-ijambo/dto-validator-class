@@ -34,12 +34,13 @@ export class ValidateClassProperty extends Validator {
   ) {
     for (let index = 0; index < rules.length; index++) {
       const propValue = this.target[rules[index].propertyKey];
+      const property=rules[index].propertyKey
 
       //email
       if (rules[index].validationType === ValidationList.EMAIL) {
         if (!this.isValidEmail(propValue)) {
           if (rules[index].message.length === 0) {
-            rules[index].message.push("Email is not valid !");
+            rules[index].message.push(`The ${propValue} field must be valid email`);
           }
           rules[index].isValid = false;
         } else {
@@ -50,9 +51,10 @@ export class ValidateClassProperty extends Validator {
 
       //required
       if (rules[index].validationType === ValidationList.REQUIRED) {
+       
         if (!this.isNotEmpty(propValue)) {
           if (rules[index].message.length === 0) {
-            rules[index].message.push("This property is required !");
+            rules[index].message.push(`The ${property} field is required !`);
           }
           rules[index].isValid = false;
         } else {
@@ -65,7 +67,7 @@ export class ValidateClassProperty extends Validator {
       if (rules[index].validationType === ValidationList.BOOL) {
         if (!this.isBoolean(propValue)) {
           if (rules[index].message.length === 0) {
-            rules[index].message.push("This property must be a boolean");
+            rules[index].message.push(`The ${property} must be a boolean`);
           }
           rules[index].isValid = false;
         } else {
@@ -79,7 +81,7 @@ export class ValidateClassProperty extends Validator {
       if (rules[index].validationType === ValidationList.NUMBER) {
         if (!this.isNumber(propValue)) {
           if (rules[index].message.length === 0) {
-            rules[index].message.push("This property must be a number");
+            rules[index].message.push(`The ${property} must be a number`);
           }
           rules[index].isValid = false;
         } else {
@@ -93,7 +95,7 @@ export class ValidateClassProperty extends Validator {
       if (rules[index].validationType === ValidationList.DATE) {
         if (!this.isValidDate(propValue)) {
           if (rules[index].message.length === 0) {
-            rules[index].message.push("Date must be a valid date");
+            rules[index].message.push(`The ${property} field must be a valid date`);
           }
           rules[index].isValid = false;
         } else {
@@ -113,7 +115,7 @@ export class ValidateClassProperty extends Validator {
           if (!this.hasValidLength(propValue, minLength, maxLength)) {
             if (rules[index].message.length === 0) {
               rules[index].message.push(
-                `This property must be between ${minLength} and ${maxLength} characters`
+                `The ${property} field must be between ${minLength} and ${maxLength} characters`
               );
             }
             rules[index].isValid = false;

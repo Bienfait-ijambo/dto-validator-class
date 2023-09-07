@@ -21,6 +21,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const decorators_1 = require("./decorators");
 const ValidateClassProperty_1 = require("./validators/ValidateClassProperty");
 class MyClass {
+    constructor(email, password, age) {
+        this.email = email;
+        this.password = password;
+        this.age = age;
+    }
     validate() {
         const validator = new ValidateClassProperty_1.ValidateClassProperty(this);
         const input = validator.verify(validator.validate());
@@ -56,10 +61,10 @@ __decorate([
     __metadata("design:type", String)
 ], MyClass.prototype, "password", void 0);
 // Instantiate the class
-const myClass = new MyClass();
-myClass.email = "bi@gmail.com";
-myClass.age = 23;
-myClass.password = '23';
+const myClass = new MyClass("bienfait", "password", 12);
+// myClass.email = "bi@gmail.com";
+// myClass.age=23
+// myClass.password="password"
 function insert() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
@@ -67,10 +72,9 @@ function insert() {
             console.log('input', input);
         }
         catch (error) {
-            console.log(error, error.message);
+            console.log('error : ', error.message);
         }
     });
 }
-// THERES A BIG BUG CHECK FOR UNDEFINED PROPERTIES
 insert();
 //# sourceMappingURL=testing.js.map

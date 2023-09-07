@@ -6,8 +6,10 @@ class Validator {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return emailRegex.test(email);
     }
-    isNotEmpty(str) {
-        return typeof str !== "undefined" && str.length > 0 ? true : false;
+    isNotEmpty(value) {
+        if (typeof value === 'undefined')
+            return false;
+        return value.length > 0 ? true : false;
     }
     hasMinLength(str, min) {
         return this.isNotEmpty(str) && str.length >= min ? true : false;
@@ -15,8 +17,10 @@ class Validator {
     hasMaxLength(str, max) {
         return this.isNotEmpty(str) && str.length <= max ? true : false;
     }
-    hasValidLength(str, min, max) {
-        const hasValidLength = str.length >= min && str.length <= max;
+    hasValidLength(value, min, max) {
+        if (typeof value === 'undefined')
+            return false;
+        const hasValidLength = value.length >= min && value.length <= max;
         return hasValidLength;
     }
     isNumber(value) {
