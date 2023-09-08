@@ -8,7 +8,7 @@ Is library built on ``reflect-metadata`` library that allows to validate class p
 
     * How to use ``@Required`` decorator
 
-     ```javascript 
+```javascript 
      class A{
         
         /**
@@ -40,14 +40,11 @@ Is library built on ``reflect-metadata`` library that allows to validate class p
 
 
 
+}``` 
 
-     }
-
-     ``` 
      * @IsNumber decorator : checks if a property is a number
 
-     ```javascript
-     class B{
+ ```javascript class B{
 
         /**
          *  @throws a default message if age not provided
@@ -64,8 +61,7 @@ Is library built on ``reflect-metadata`` library that allows to validate class p
         age:number
         */
         
-     }
-     ```
+}```
 
 
     *  @IsBool decorator : checks if a property is a boolean
