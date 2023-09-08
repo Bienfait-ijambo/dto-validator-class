@@ -63,7 +63,7 @@ class B {
 
     *  @IsDate decorator : checks if a property is a date
 
-Note : The usage of @IsDate, @IsBool,@IsNumber are the same means that the can take an `object ` with message as argument to define a custom message. But the `@Required ` decorator can take an ` object as argument` with ``message,Length object to define the min anx max character of a string.
+Note : The usage of @IsDate, @IsBool,@IsNumber are the same means that the can take an `object ` with message as argument to define a custom message. But the `@Required ` decorator can take an ` object as argument` with ``message,Length object to define the min and max character of a string.
 
 ## Real world example
 
